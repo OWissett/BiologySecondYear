@@ -6,6 +6,7 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(gridExtra)
+library(plotly)
 
 ##############################
 
@@ -18,13 +19,13 @@ my.Data <- function(){
 }
 
 ## DRAW GRAPH
-my.Draw <- function(s){
+my.Draw <- function(smMeth, smForm, smFam){
   dat <- my.Data()
   plots <- list()
   for(i in 1:2){
     plots[[i]] <- ggplot(data = dat[[i]], aes(Time, SI)) + 
       geom_point() +
-      geom_smooth(method="loess", span=s) + 
+      stat_smooth(method = smMeth, formula = smForm, method.args = list(family=smFam)) + 
       xlab("Time (Minutes)") + 
       ylab("Septation Index (%)") +
       scale_colour_brewer(palette="Paired")+
@@ -34,7 +35,6 @@ my.Draw <- function(s){
 }
 
 
-##Test
 
 
 
