@@ -34,10 +34,3 @@ my.Draw <- function(smMeth, smForm, smFam){
   grid.arrange(plots[[1]], plots[[2]], nrow=2, ncol=1)
 }
 
-
-
-
-##Test
-
-
-
