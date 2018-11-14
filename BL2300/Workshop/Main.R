@@ -14,7 +14,7 @@ library(ggplot2)
 library(gridExtra)
 
 ## Load Data Set into R
-cat <- read.table("H:/temp/AssessedPractical/catfleas4.csv", header=T, sep="," )
+cat <- read.table("CatFleas.csv", header=T, sep="," )
 
 ##Check File has been mounted correctly
 head(cat) 
