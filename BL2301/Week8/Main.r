@@ -44,6 +44,6 @@ my.Draw <- function(smMeth, smForm, smFam){
       ggtitle("Septation over time during synchronous mitosis in S. Pombe")
   }
   ##Each item within plots[] is diplayed on the graphics grid
-  grid.arrange(plots[[1]], plots[[2]], nrow=2, ncol=1)
+  grid.arrange(plots[[1]], plots[[2]], nrow=1, ncol=2)
 }
 
