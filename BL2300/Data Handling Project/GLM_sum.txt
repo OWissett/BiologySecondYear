@@ -1,3 +1,4 @@
+[1] "############### Model:  1 ###############"
 
 Call:
 glm(formula = sysbp ~ age + smoke, data = dat)
@@ -22,75 +23,275 @@ AIC: 705.93
 
 Number of Fisher Scoring iterations: 2
 
+[1] "############### Model:  2 ###############"
 
 Call:
-glm(formula = sysbp ~ age + smoke, data = dat)
+glm(formula = sysbp ~ age + smoke + age * smoke, data = dat)
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--18.3578   -4.9672   -0.5134    5.0130   27.8766  
+-18.2656   -4.9023   -0.6562    5.0572   27.9724  
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 67.29535    3.37464  19.941   <2e-16 ***
-age          1.68880    0.06098  27.695   <2e-16 ***
-smokeY       3.87759    1.61724   2.398   0.0184 *  
+(Intercept) 66.04022    4.92656  13.405   <2e-16 ***
+age          1.71303    0.09227  18.565   <2e-16 ***
+smokeY       6.14423    6.65693   0.923    0.358    
+age:smokeY  -0.04332    0.12338  -0.351    0.726    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-(Dispersion parameter for gaussian family taken to be 64.83979)
+(Dispersion parameter for gaussian family taken to be 65.43119)
 
     Null deviance: 56878.8  on 99  degrees of freedom
-Residual deviance:  6289.5  on 97  degrees of freedom
-AIC: 705.93
+Residual deviance:  6281.4  on 96  degrees of freedom
+AIC: 707.81
 
 Number of Fisher Scoring iterations: 2
 
+[1] "############### Model:  3 ###############"
 
 Call:
-glm(formula = sysbp ~ age + smoke, data = dat)
+glm(formula = sysbp ~ age, data = dat)
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--18.3578   -4.9672   -0.5134    5.0130   27.8766  
+-20.4229   -5.5261    0.0729    5.4718   29.6242  
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 67.29535    3.37464  19.941   <2e-16 ***
-age          1.68880    0.06098  27.695   <2e-16 ***
-smokeY       3.87759    1.61724   2.398   0.0184 *  
+(Intercept) 69.04897    3.37331   20.47   <2e-16 ***
+age          1.69529    0.06238   27.18   <2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-(Dispersion parameter for gaussian family taken to be 64.83979)
+(Dispersion parameter for gaussian family taken to be 67.98176)
 
     Null deviance: 56878.8  on 99  degrees of freedom
-Residual deviance:  6289.5  on 97  degrees of freedom
-AIC: 705.93
+Residual deviance:  6662.2  on 98  degrees of freedom
+AIC: 709.69
 
 Number of Fisher Scoring iterations: 2
 
+[1] "############### Model:  4 ###############"
 
 Call:
-glm(formula = sysbp ~ age + smoke, data = dat)
+glm(formula = sysbp ~ smoke, data = dat)
 
 Deviance Residuals: 
-     Min        1Q    Median        3Q       Max  
--18.3578   -4.9672   -0.5134    5.0130   27.8766  
+    Min       1Q   Median       3Q      Max  
+-52.783  -15.783   -0.648   20.467   40.217  
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 67.29535    3.37464  19.941   <2e-16 ***
-age          1.68880    0.06098  27.695   <2e-16 ***
-smokeY       3.87759    1.61724   2.398   0.0184 *  
+(Intercept)  154.783      3.525  43.906   <2e-16 ***
+smokeY         5.866      4.797   1.223    0.224    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-(Dispersion parameter for gaussian family taken to be 64.83979)
+(Dispersion parameter for gaussian family taken to be 571.6749)
 
-    Null deviance: 56878.8  on 99  degrees of freedom
-Residual deviance:  6289.5  on 97  degrees of freedom
-AIC: 705.93
+    Null deviance: 56879  on 99  degrees of freedom
+Residual deviance: 56024  on 98  degrees of freedom
+AIC: 922.62
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  5 ###############"
+
+Call:
+glm(formula = sysbp ~ age + smoke, data = mdat)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-18.929   -3.132    0.525    4.054   23.351  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 72.83666    4.18923  17.387   <2e-16 ***
+age          1.66280    0.07733  21.502   <2e-16 ***
+smokeY       4.37020    2.04392   2.138   0.0377 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 51.699)
+
+    Null deviance: 27291.4  on 49  degrees of freedom
+Residual deviance:  2429.9  on 47  degrees of freedom
+AIC: 344.07
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  6 ###############"
+
+Call:
+glm(formula = sysbp ~ age + smoke + age * smoke, data = mdat)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-17.6538   -3.6765    0.1145    3.7664   23.6597  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  68.5478     6.0407  11.348 6.28e-15 ***
+age           1.7471     0.1153  15.151  < 2e-16 ***
+smokeY       12.3510     8.3502   1.479    0.146    
+age:smokeY   -0.1533     0.1555  -0.986    0.329    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 51.73011)
+
+    Null deviance: 27291.4  on 49  degrees of freedom
+Residual deviance:  2379.6  on 46  degrees of freedom
+AIC: 345.03
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  7 ###############"
+
+Call:
+glm(formula = sysbp ~ age, data = mdat)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-17.0705   -3.4315    0.1847    3.3849   25.4400  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 74.15963    4.29467   17.27   <2e-16 ***
+age          1.67932    0.07976   21.05   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 55.54593)
+
+    Null deviance: 27291.4  on 49  degrees of freedom
+Residual deviance:  2666.2  on 48  degrees of freedom
+AIC: 346.71
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  8 ###############"
+
+Call:
+glm(formula = sysbp ~ smoke, data = mdat)
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-47.44  -16.38    2.18   19.31   37.56  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  157.440      4.684  33.610   <2e-16 ***
+smokeY         8.760      6.625   1.322    0.192    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 548.5867)
+
+    Null deviance: 27291  on 49  degrees of freedom
+Residual deviance: 26332  on 48  degrees of freedom
+AIC: 461.22
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  9 ###############"
+
+Call:
+glm(formula = sysbp ~ age + smoke, data = fdat)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-13.1551   -2.3699    0.4554    2.9863   21.9509  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 60.32323    3.82103  15.787  < 2e-16 ***
+age          1.72566    0.06739  25.607  < 2e-16 ***
+smokeY       4.91175    1.80472   2.722  0.00908 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 39.66217)
+
+    Null deviance: 28089.7  on 49  degrees of freedom
+Residual deviance:  1864.1  on 47  degrees of freedom
+AIC: 330.82
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  10 ###############"
+
+Call:
+glm(formula = sysbp ~ age + smoke + age * smoke, data = fdat)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-13.1096   -2.2584    0.4605    2.8592   21.9961  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 59.83227    5.67311  10.547 7.29e-14 ***
+age          1.73494    0.10397  16.687  < 2e-16 ***
+smokeY       5.76910    7.48293   0.771    0.445    
+age:smokeY  -0.01626    0.13761  -0.118    0.906    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 40.5121)
+
+    Null deviance: 28089.7  on 49  degrees of freedom
+Residual deviance:  1863.6  on 46  degrees of freedom
+AIC: 332.8
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  11 ###############"
+
+Call:
+glm(formula = sysbp ~ age, data = fdat)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-16.016   -2.800    0.108    3.695   24.031  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 63.31187    3.89645   16.25   <2e-16 ***
+age          1.72301    0.07174   24.02   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 44.95639)
+
+    Null deviance: 28089.7  on 49  degrees of freedom
+Residual deviance:  2157.9  on 48  degrees of freedom
+AIC: 336.14
+
+Number of Fisher Scoring iterations: 2
+
+[1] "############### Model:  12 ###############"
+
+Call:
+glm(formula = sysbp ~ smoke, data = fdat)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-49.619  -17.112   -0.741   20.070   33.381  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  151.619      5.258  28.834   <2e-16 ***
+smokeY         4.243      6.904   0.615    0.542    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 580.6333)
+
+    Null deviance: 28090  on 49  degrees of freedom
+Residual deviance: 27870  on 48  degrees of freedom
+AIC: 464.06
 
 Number of Fisher Scoring iterations: 2
 
