@@ -32,16 +32,21 @@ my.Models <- function(){
   model <- list()
   
   ## Sysbp Depends on Smoking and Age, with no iteraction
+  ## AIC: 705 
   model[[1]] <- glm(sysbp~age+smoke ,data=dat)
   
   ## Sysbp depends on smoking and age, with interaction between age and smoking
+  ## AIC: 707.8 
   model[[2]] <- glm(sysbp~age+smoke+age*smoke, data=dat)
   
   ## Sysbp depends only on age
+  ##AIC: 709.7
   model[[3]] <- glm(sysbp~age, data=dat)
   
   ##Sysbp depends only on smoking
+  ##AIC: 922.6
   model[[4]] <- glm(sysbp~smoke, data=dat)
+  
   
   ##Returns List of models
   return(model)
@@ -52,9 +57,12 @@ my.Models <- function(){
 ###################################
 
 my.Summary <- function(){
-  models <- my.Models()
-  for(i in 1:length(models)){
-    summary(models[[i]])
+  model <- my.Models()
+  sink("GLM_sum.txt", append = F)
+  for(i in 1:length(model)){
+    print(summary(model[[1]]))
+    print("######################## NEXT MODEL #########################")
   }
+  sink()
 }
 
