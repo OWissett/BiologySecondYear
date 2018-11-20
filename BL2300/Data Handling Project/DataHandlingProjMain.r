@@ -19,6 +19,7 @@ library("dplyr")
 library("pillar")
 library("ggplot2")
 library("gridExtra")
+library("ggfortify")
 
 ###################################
 ##     AUTOCALL FUNCTIONS        ##
@@ -56,6 +57,8 @@ my.Models <- function(){
 ##    USER CALL FUNCTIONS        ##
 ###################################
 
+##Purpose: Summarises the GLMs
+##OUTPUT: Text file called GLM_sum.txt containing summary data 
 my.Summary <- function(){
   model <- my.Models()
   sink("GLM_sum.txt", append = F)
@@ -65,4 +68,15 @@ my.Summary <- function(){
   }
   sink()
 }
+
+##Purpose: Creates summary plots for the data
+my.ModelPlot <- function(){
+  model <- my.Models()
+  
+  for(i in 1:length(model)){
+    autoplot(model[[i]])
+  }
+}
+
+
 
