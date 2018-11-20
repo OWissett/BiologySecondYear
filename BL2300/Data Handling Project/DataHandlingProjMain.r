@@ -69,12 +69,15 @@ my.Summary <- function(){
   sink()
 }
 
-##Purpose: Creates summary plots for the data
+##Purpose: Creates summary plots for the models
+##OUTPUT: Plots of models outputted to graphics
 my.ModelPlot <- function(){
   model <- my.Models()
-  
+  par(mfrow=c(2,2))
   for(i in 1:length(model)){
-    autoplot(model[[i]])
+    png(filename=paste("Graph", toString(i), ".png"))
+    plot(model[[i]])
+    dev.off()
   }
 }
 
