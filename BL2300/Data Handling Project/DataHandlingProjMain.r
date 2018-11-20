@@ -1,7 +1,13 @@
 ###################################
 ## BL2300: Data Handling Project ##
 ###################################
-
+## Dependent Variable: Systolic Blood Pressure
+## Independent Variables: Smoke, Age
+## Control Variables: Sex
+## 
+## HYPOTHESIS: There will be an increase in Systolic BP in smokers
+##
+##
 ###################################
 ##     INITIALISE LIBRARIES      ##
 ###################################
@@ -18,17 +24,37 @@ library("gridExtra")
 ##     AUTOCALL FUNCTIONS        ##
 ###################################
 
-my.Load() <- function(){
+##Purpose: Defines plausible biological GLMs
+##Output: List of Models
+my.Models <- function(){
+  
   dat <- read.csv("dataset.csv", header=T, sep=",")
-  return(dat)
+  model <- list()
+  
+  ## Sysbp Depends on Smoking and Age, with no iteraction
+  model[[1]] <- glm(sysbp~age+smoke ,data=dat)
+  
+  ## Sysbp depends on smoking and age, with interaction between age and smoking
+  model[[2]] <- glm(sysbp~age+smoke+age*smoke, data=dat)
+  
+  ## Sysbp depends only on age
+  model[[3]] <- glm(sysbp~age, data=dat)
+  
+  ##Sysbp depends only on smoking
+  model[[4]] <- glm(sysbp~smoke, data=dat)
+  
+  ##Returns List of models
+  return(model)
 }
 
 ###################################
 ##    USER CALL FUNCTIONS        ##
 ###################################
-my.Models <- function(){
-  models <- list()
-  models[[1]] <- ##Create a list of different plausible GLMs
-  
-  
+
+my.Summary <- function(){
+  models <- my.Models()
+  for(i in 1:length(models)){
+    summary(models[[i]])
+  }
 }
+

@@ -1,4 +1,4 @@
-age,sex,bmi,whr,sysbp,chol,smoke
+age,sex,bmi,whr,sysbp,cholest,smoke
 42,F,28.5,0.83,132,4.2,N
 41,F,26.2,0.82,135,3.3,Y
 40,F,25.2,0.84,141,4.3,Y
