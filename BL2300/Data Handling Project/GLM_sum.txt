@@ -9,9 +9,9 @@ Deviance Residuals:
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 67.29535    3.37464  19.941   <2e-16 ***
-age          1.68880    0.06098  27.695   <2e-16 ***
-smokeY       3.87759    1.61724   2.398   0.0184 *  
+(Intercept) 67.29535    3.37464  19.941   <2e-16 ***  (Systolic Blood Pressure; Covariate)
+age          1.68880    0.06098  27.695   <2e-16 ***  (Age; Covariate; gradient)
+smokeY       3.87759    1.61724   2.398   0.0184 *    (Smoke; Factor; Difference)
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 

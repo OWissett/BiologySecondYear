@@ -20,6 +20,7 @@ library("pillar")
 library("ggplot2")
 library("gridExtra")
 library("ggfortify")
+library("ggthemes")
 
 ###################################
 ##      GLOBAL VARIABLES         ##
@@ -44,7 +45,7 @@ my.Models <- function(){
   model <- list()
   
   #######################################################
-  #                  MIXED SEXES
+  #                  MIXED SEXES W/O Cholesterol
   #######################################################
   
   
@@ -65,7 +66,7 @@ my.Models <- function(){
   model[[4]] <- glm(sysbp~smoke, data=dat)
   
   #######################################################
-  #                     Males
+  #                     Males W/O Cholesterol
   #######################################################
   
   ## Sysbp Depends on Smoking and Age, with no iteraction
@@ -85,7 +86,70 @@ my.Models <- function(){
   model[[8]] <- glm(sysbp~smoke, data=mdat)
   
   #######################################################
-  #                    Females
+  #                    Females - W/O Cholesterol
+  #######################################################
+  
+  ## Sysbp Depends on Smoking and Age, with no iteraction
+  ## AIC: 330.8
+  model[[9]] <- glm(sysbp~age+smoke, data=fdat)
+  
+  ## Sysbp depends on smoking and age, with interaction between age and smoking
+  ## AIC: 332.8
+  model[[10]] <- glm(sysbp~age+smoke+age*smoke, data=fdat)
+  
+  ## Sysbp depends only on age
+  ##AIC: 336.1
+  model[[11]] <- glm(sysbp~age, data=fdat)
+  
+  ##Sysbp depends only on smoking
+  ##AIC: 464.1
+  model[[12]] <- glm(sysbp~smoke, data=fdat)
+  
+  
+  
+  #######################################################
+  #                  MIXED SEXES W/ Cholesterol
+  #######################################################
+  
+  
+  ## Sysbp Depends on Smoking, Age and Cholesterol, with no iteractions
+  ## AIC:  603.3
+  model[[13]] <- glm(sysbp~age+smoke+cholest, data=dat)
+  
+  ## Sysbp depends on smoking, age and Cholesterol, with interaction between cholesterol and smoking
+  ## AIC:  605
+  model[[14]] <- glm(sysbp~age+smoke+cholest+smoke*cholest, data=dat)
+  
+  ## Sysbp depends on Smoking, age and Cholesterol, with interaction
+  ##AIC: 
+  model[[15]] <- glm(sysbp~age, data=dat)
+  
+  ##Sysbp depends only on smoking
+  ##AIC: 
+  model[[16]] <- glm(sysbp~smoke, data=dat)
+  
+  #######################################################
+  #                     Males W/ Cholesterol
+  #######################################################
+  
+  ## Sysbp Depends on Smoking and Age, with no iteraction
+  ## AIC: 344.1
+  model[[5]] <- glm(sysbp~age+smoke, data=mdat)
+  
+  ## Sysbp depends on smoking and age, with interaction between age and smoking
+  ## AIC: 345
+  model[[6]] <- glm(sysbp~age+smoke+age*smoke, data=mdat)
+  
+  ## Sysbp depends only on age
+  ##AIC: 346.7
+  model[[7]] <- glm(sysbp~age, data=mdat)
+  
+  ##Sysbp depends only on smoking
+  ##AIC: 461.2
+  model[[8]] <- glm(sysbp~smoke, data=mdat)
+  
+  #######################################################
+  #                    Females - W/OCholesterol
   #######################################################
   
   ## Sysbp Depends on Smoking and Age, with no iteraction
@@ -111,6 +175,9 @@ my.Models <- function(){
   ##Best Models: 1, 5, 9. (Mixed. Males, Females)
 }
 
+##Purpose: Print a given string onto a graphical plot
+##INPUT: my_stext, a string that is printed onto the plot
+##OUTPUT: a plot that is outputted to the current graphics writer.
 my.PrintTextToPlot <- function(my_text){
   par(mar=c(0,0,0,0))
   plot(c(0, 1), c(0, 1), ann = F, bty = 'n', type = 'n', xaxt = 'n', yaxt = 'n')
@@ -142,6 +209,7 @@ my.Summary <- function(m, n){
 ##INPUT:   m, the lower index number for the model to be summarised; n, the upper
 ##         index number for the model to be summarised. Values must be integers
 ##         MODE: 1 - Single Test, and will out test to Plot. 0 - List Test, and will ouput PNG file
+##         model: glm/lm (assuming MODE==1) or list of GLMs (assuming MODE==0)
 ##OUTPUT:  Plots of models outputted to graphics
 
 my.ModelPlot <- function(m, n, MODE, model){
@@ -189,32 +257,83 @@ my.Graph <- function(){
   pred[[3]] <- data.frame(sysbp_pred = predict(mods[[3]]), age=fdat$age, smoke=fdat$smoke)
   
   ##Mixed Population graph showing Systolic BP against 
-  plots[[1]] <- ggplot(dat, aes(age, sysbp, shape=dat$class, colour=dat$sex)) + 
+  plots[[1]] <- ggplot(dat, aes(age, sysbp, shape=dat$class, colour=dat$class)) + 
     geom_point() +
-    geom_line(data=pred[[1]], aes(age, sysbp_pred, colour=sex)) +
-    ggtitle("Effect of Age, Cholesterol and Smoking on Systolic Blood Pressure", "Mixed Sex")
+    geom_line(data=pred[[1]], aes(age, sysbp_pred)) +
+    ggtitle("Effect of Age and Smoking Status on Systolic Blood Pressure", "Mixed Sex") + 
+    scale_colour_manual(name ="Sex and Smoking Status", 
+                       labels =c("Male Non-Smokers", 
+                                 "Male Smokers",
+                                 "Female Non-Smokers", 
+                                 "Female Smokers"),
+                       values = c("darkcyan", "firebrick1", "darkcyan","firebrick1")) +
+    scale_shape_manual(name ="Sex and Smoking Status", 
+                       labels =c("Male Non-Smokers", 
+                                 "Male Smokers",
+                                 "Female Non-Smokers", 
+                                 "Female Smokers"),
+                       values = c(1,1,2,2)) +
+    xlab("Age of Individual (Years)") +
+    ylab("Systolic Blood Pressure (mmHg)") +
+    theme_classic() +
+    xlim(29,76) +
+    ylim(100, 200)
+    
   
   ##Males
-  plots[[2]] <- ggplot(mdat, aes(age, sysbp, shape=smoke, colour=mdat$smoke)) + 
+  plots[[2]] <- ggplot(mdat, aes(age, sysbp, shape=mdat$smoke, colour=mdat$smoke)) + 
     geom_point() +
     geom_line(data=pred[[2]], aes(age, sysbp_pred)) +
-    ggtitle("Effect of Age, Cholesterol and Smoking on Systolic Blood Pressure", "Males")
+    ggtitle("Effect of Age and Smoking on Systolic Blood Pressure", "Males") +
+    scale_colour_manual(name ="Smoking Status", 
+                       labels =c("Non-Smoker", "Smoker"),
+                       values = c("darkcyan", "firebrick1")) +
+    scale_shape_manual(name ="Smoking Status",
+                       labels =c("Non-Smoker", "Smoker"),
+                       values = c(1,1)) +
+    xlab("Age of Individual (Years)") +
+    ylab("Systolic Blood Pressure (mmHg)") +
+    theme_classic() +
+    xlim(29,76) +
+    ylim(100, 200)
   
   ##Females
-  plots[[3]] <- ggplot(fdat, aes(age, sysbp, shape=smoke, colour=fdat$smoke)) + 
+  plots[[3]] <- ggplot(fdat, aes(age, sysbp, shape=fdat$smoke, colour=fdat$smoke)) + 
     geom_point() +
     geom_line(data=pred[[3]], aes(age, sysbp_pred)) +
-    ggtitle("Effect of Age, Cholesterol and Smoking on Systolic Blood Pressure", "Females")
-  
+    ggtitle("Effect of Age and Smoking on Systolic Blood Pressure", "Females") +
+    scale_colour_manual(name ="Smoking Status",
+                        labels =c("Non-Smoker", "Smoker"),
+                        values = c("darkcyan", "firebrick1")) +
+    scale_shape_manual(name ="Smoking Status",
+                       labels =c("Non-Smoker", "Smoker"),
+                       values = c(2,2)) +
+    xlab("Age of Individual (Years)") +
+    ylab("Systolic Blood Pressure (mmHg)") +
+    theme_classic() +
+    xlim(29,76) +
+    ylim(100, 200)
+    
+    
   
   grid.arrange(plots[[1]])
   grid.arrange(plots[[2]], plots[[3]], ncol=2)
   
 }
 
+
 ####################################
 ##     NOTES  / DIARY             ##
 ####################################
+## QUESTIONS TO ASK IN LAB:
+##  * Ask Prof. Creswell during lab whether I can add 
+## cholesterol to the graph using the colour function, even if it isnt included 
+## as a covariate within the model or whether it must be added to the model and
+## interactions must be tested or whether I should leave it out as it is not 
+## necessary for the assignment...
+## * Ask whether both regression lines should have the same gradient, as there is only 1 factor?
+## * Ask about the splitting the populations is a sufficient control, and if the control is include within the model?
+##
 ##
 ## 20/11/18 - Day 1
 ##
@@ -222,24 +341,25 @@ my.Graph <- function(){
 ## an interaction between age and smoking. I found that I have been able to
 ## show 4 independent variable using, x axis = age, shape = smoking + gender
 ## and colour gradient = cholesterol. I am unsure whether this is stistically 
-## correct. NOTE TO SELF: Ask Prof. Creswell during lab whether I can add 
-## cholesterol to the graph using the colour function, even if it isnt included 
-## as a covariate within the model or whether it must be added to the model and
-## interactions must be tested or whether I should leave it out as it is not 
-## necessary for the assignment...
+## correct.
 ##
-## To Do: * Finish the labelling of my.Graph's graphs and the legends
-##        * Solve the issue with my.ModelPlot, I want to be able to print the call
+## To Do: * Finish the labelling of my.Graph's graphs and the legends - COMPLETED 21/11/18
+##        * Solve the issue with my.ModelPlot, I want to be able to print the call 
 ##          formula from the summary data of the model[[i]], this is not super 
-##          important as it could be done manually, but this is a pain in the bum.
+##          important as it could be done manually, but this is a pain in the bum. - COMPLETED 21/11/18
 ##        * Imrpove visual style of the document and clean up code and files.
-## 
-##  21/11/18
+##
+##\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+##
+##  21/11/18 - Day 2
 ##
 ## Fixed my.ModelPlot issue with Formula output. Modified the my.ModelPlot function 
 ## allowing it to act on lists and an singlular models.
 ## 
 ## Currently investigating the affect of including cholesterol in the model. 
+## 
+## To Do: * Study Models including cholesterol - Do this during the lab after asking Prof Creswell
+##        * 
 ## 
 
 
