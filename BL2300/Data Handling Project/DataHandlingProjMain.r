@@ -321,6 +321,27 @@ my.Graph <- function(){
   
 }
 
+##Purpose: To perform an ANOVA test on dat
+my.ANOVA <- function(){
+  
+  ##Shows a random sample from dat.
+  set.seed(1234)
+  dplyr::sample_n(dat, 10)
+  
+  group_by(dat, factor(class))%>%
+    summarise(
+      count =n(),
+      mean = mean(sysbp, na.rm=T),
+      sd = sd(sysbp, na.rm=T)
+    )
+  
+  res.aov <- aov(sysbp~class, data = dat)
+  
+  print(summary(res.aov))
+  TukeyHSD(res.aov)
+  
+}
+
 ####################################
 ##     NOTES  / DIARY             ##
 ####################################
