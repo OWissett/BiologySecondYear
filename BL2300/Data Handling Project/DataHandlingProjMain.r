@@ -321,14 +321,6 @@ my.Graph <- function(){
   
 }
 
-##Purpose: To calculate R square values for each set of data.
-##INPUT: 
-##OUTPUT:
-my.RSquared <- function(){
-  
-  
-  
-}
 ####################################
 ##     NOTES  / DIARY             ##
 ####################################
