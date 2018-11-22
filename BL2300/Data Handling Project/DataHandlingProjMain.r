@@ -5,7 +5,7 @@
 ## Independent Variables: Smoke, Age
 ## Control Variables: Sex
 ## 
-## HYPOTHESIS: There will be an increase in Systolic BP in smokers
+## HYPOTHESIS: There will be an increase in Systolic BP in smokers as age increases
 ##
 ##
 ###################################
@@ -193,7 +193,7 @@ my.PrintTextToPlot <- function(my_text){
 ##Purpose: Summarises the GLMs
 ##INPUT:   m, the lower index number for the model to be summarised; n, the upper
 ##         index number for the model to be summarised. Values must be integers.
-##OUTPUT:  Text file called GLM_sum.txt containing summary data 
+##OUTPUT:  Text file called GLM_sum.txt containing summary and AIC data 
 
 my.Summary <- function(m, n){
   model <- my.Models()
@@ -233,13 +233,13 @@ my.ModelPlot <- function(m, n, MODE, model){
       hist(resid(model[[i]]), main = paste("Histogram of Residues for Model: ", toString(i)), xlab="Residue Value")
       dev.off()
     }
-  }else{return("Enter Valid Parameters: 0 - List Test Mode, 1 - Single Test Mode")}
+  }else{print("Enter Valid Parameters: 0 - List Test Mode, 1 - Single Test Mode")}
 }
 
 ##Purpose: Create plots the different data with Regression lines plotted
 ##         using the best fitting model
-##OUTPUT:
-##INPUT:
+##INPUT: Models for the dat, mdat and fdat
+##OUTPUT: 3 plots are outputted to the graphics writer.
 
 my.Graph <- function(){
   
@@ -283,7 +283,7 @@ my.Graph <- function(){
   ##Males
   plots[[2]] <- ggplot(mdat, aes(age, sysbp, shape=mdat$smoke, colour=mdat$smoke)) + 
     geom_point() +
-    geom_line(data=pred[[2]], aes(age, sysbp_pred)) +
+    geom_line(data=pred[[2]], aes(age, sysbp_pred, linetype = )) +
     ggtitle("Effect of Age and Smoking on Systolic Blood Pressure", "Males") +
     scale_colour_manual(name ="Smoking Status", 
                        labels =c("Non-Smoker", "Smoker"),
@@ -321,7 +321,14 @@ my.Graph <- function(){
   
 }
 
-
+##Purpose: To calculate R square values for each set of data.
+##INPUT: 
+##OUTPUT:
+my.RSquared <- function(){
+  
+  
+  
+}
 ####################################
 ##     NOTES  / DIARY             ##
 ####################################
