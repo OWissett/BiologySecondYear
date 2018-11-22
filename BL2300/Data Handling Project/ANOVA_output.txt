@@ -1,0 +1,17 @@
+            Df Sum Sq Mean Sq F value Pr(>F)
+class        3   2676   892.1    1.58  0.199
+Residuals   96  54203   564.6               
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = sysbp ~ class, data = dat)
+
+$class
+          diff        lwr       upr     p adj
+2-1   8.760000  -8.812181 26.332181 0.5630296
+3-1  -5.820952 -24.210876 12.568971 0.8412497
+4-1  -1.577931 -18.533351 15.377489 0.9949030
+3-2 -14.580952 -32.970876  3.808971 0.1693489
+4-2 -10.337931 -27.293351  6.617489 0.3867957
+4-3   4.243021 -13.558496 22.044539 0.9244060
+

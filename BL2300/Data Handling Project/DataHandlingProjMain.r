@@ -335,11 +335,11 @@ my.ANOVA <- function(){
       sd = sd(sysbp, na.rm=T)
     )
   
+  sink("ANOVA_output.txt", append=F)
   res.aov <- aov(sysbp~class, data = dat)
-  
   print(summary(res.aov))
-  TukeyHSD(res.aov)
-  
+  print(TukeyHSD(res.aov)) ##CHEEKY BOI
+  sink()
 }
 
 ####################################
