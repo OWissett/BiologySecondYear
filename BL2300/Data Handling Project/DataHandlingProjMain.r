@@ -220,7 +220,7 @@ my.ModelPlot <- function(m, n, MODE, model){
     plot(model)
     my.PrintTextToPlot(paste("AIC: ", AIC_text, "\n Formula:\n ", Form_text))
     hist(resid(model), main = "Histogram of Residues for Model", xlab="Residue Value")
-  }else if(MODE==0 & isNumeric(m) & isNumeric(n) & length(model)>1){
+  }else if(MODE==0){
     for(i in m:n){
       AIC_text <- toString(AIC(model[[i]]))
       Form_text <- toString(model[[i]][["call"]])
@@ -341,6 +341,9 @@ my.ANOVA <- function(){
   print(TukeyHSD(res.aov)) ##CHEEKY BOI
   sink()
 }
+
+
+
 
 ####################################
 ##     NOTES  / DIARY             ##
