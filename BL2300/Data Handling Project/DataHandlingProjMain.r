@@ -105,72 +105,8 @@ my.Models <- function(){
   ##AIC: 464.1
   model[[12]] <- glm(sysbp~smoke, data=fdat)
   
-  
-  
-  #######################################################
-  #                  MIXED SEXES W/ Cholesterol
-  #######################################################
-  
-  
-  ## Sysbp Depends on Smoking, Age and Cholesterol, with no iteractions
-  ## AIC:  603.3
-  model[[13]] <- glm(sysbp~age+smoke+cholest, data=dat)
-  
-  ## Sysbp depends on smoking, age and Cholesterol, with interaction between cholesterol and smoking
-  ## AIC:  605
-  model[[14]] <- glm(sysbp~age+smoke+cholest+smoke*cholest, data=dat)
-  
-  ## Sysbp depends on Smoking, age and Cholesterol, with interaction
-  ##AIC: 
-  model[[15]] <- glm(sysbp~age, data=dat)
-  
-  ##Sysbp depends only on smoking
-  ##AIC: 
-  model[[16]] <- glm(sysbp~smoke, data=dat)
-  
-  #######################################################
-  #                     Males W/ Cholesterol
-  #######################################################
-  
-  ## Sysbp Depends on Smoking and Age, with no iteraction
-  ## AIC: 344.1
-  model[[5]] <- glm(sysbp~age+smoke, data=mdat)
-  
-  ## Sysbp depends on smoking and age, with interaction between age and smoking
-  ## AIC: 345
-  model[[6]] <- glm(sysbp~age+smoke+age*smoke, data=mdat)
-  
-  ## Sysbp depends only on age
-  ##AIC: 346.7
-  model[[7]] <- glm(sysbp~age, data=mdat)
-  
-  ##Sysbp depends only on smoking
-  ##AIC: 461.2
-  model[[8]] <- glm(sysbp~smoke, data=mdat)
-  
-  #######################################################
-  #                    Females - W/OCholesterol
-  #######################################################
-  
-  ## Sysbp Depends on Smoking and Age, with no iteraction
-  ## AIC: 330.8
-  model[[9]] <- glm(sysbp~age+smoke, data=fdat)
-  
-  ## Sysbp depends on smoking and age, with interaction between age and smoking
-  ## AIC: 332.8
-  model[[10]] <- glm(sysbp~age+smoke+age*smoke, data=fdat)
-  
-  ## Sysbp depends only on age
-  ##AIC: 336.1
-  model[[11]] <- glm(sysbp~age, data=fdat)
-  
-  ##Sysbp depends only on smoking
-  ##AIC: 464.1
-  model[[12]] <- glm(sysbp~smoke, data=fdat)
-  
   ##Returns List of models
   return(model)
-  
   
   ##Best Models: 1, 5, 9. (Mixed. Males, Females)
 }
